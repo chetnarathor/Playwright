@@ -1,4 +1,4 @@
-# Playwright Assessment Final
+# VeARC Playwright Assessment
 
 This project contains end-to-end tests for a web application using Playwright.
 
