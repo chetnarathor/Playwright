@@ -86,9 +86,35 @@ After running the tests, a report will be generated in the `playwright-report/` 
 start playwright-report/index.html
 ```
 
+## Page Objects
+
+### CartPage
+The `CartPage` class contains methods to interact with the shopping cart page.
+
+#### Methods:
+- `addProductToCart(productAltText)`: Adds a product to the cart using its alt text.
+- `navigateToCart()`: Navigates to the shopping cart page.
+- `acceptTermsAndCheckout()`: Accepts the terms of service and proceeds to checkout.
+- `addProductByName(name)`: Adds a product to the cart by its name.
+- `verifyProductDetails(productName, expectedQuantity)`: Verifies the product details in the cart.
+
+### CheckoutPage
+The `CheckoutPage` class contains methods to complete the checkout process.
+
+#### Methods:
+- `completeCheckout()`: Completes the checkout process by navigating through all steps.
+- `verifyOrderSuccess()`: Verifies that the order was successfully placed.
+
+### LoginPage
+The `LoginPage` class contains methods to handle login functionality.
+
+#### Methods:
+- `navigateToLogin()`: Navigates to the login page.
+- `login(email, password)`: Logs in using the provided email and password.
+
 ## JSON Reporter
 
-A custom JSON reporter has been added to log test results in JSON format. The reporter writes the results to a file named `test-results.json` in the project root.
+A custom JSON reporter logs test results in JSON format. The results are saved in `test-results.json`.
 
 ### How to Use the JSON Reporter
 

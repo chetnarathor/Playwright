@@ -16,18 +16,23 @@ test('login and checkout test', async ({ browser }) => {
     await loginPage.navigateToLogin();
     await loginPage.login(config.login.email, config.login.password);
 
-
-    // await page.getByText('Books').first().click();
     // Add products to cart
-   // for (const product of config.products) {
-    await cartPage.addProductByName("14.1-inch Laptop");
+    await cartPage.addProductByName(config.products[0]);
     await page.getByText('Books').first().click();
-    await cartPage.addProductByName("Computing and Internet");
-    
+    await cartPage.addProductByName(config.products[1]);
 
     // Verify notification and navigate to cart
     await expect(cartPage.notificationBar).toContainText('The product has been added to your shopping cart');
     await cartPage.navigateToCart();
+
+    const allProductRows = page.locator('table.cart tbody tr.cart-item-row');
+    await expect(allProductRows, 'The cart should contain exactly two product rows.').toHaveCount(2);
+
+    // Verify product details
+    await cartPage.verifyProductDetails(config.products[0], 1);
+    await cartPage.verifyProductDetails(config.products[1], 1);
+
+    console.log("PASS: Verified both products are in the cart with the correct quantity of 1.");
 
     // Accept terms and proceed to checkout
     await cartPage.acceptTermsAndCheckout();

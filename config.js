@@ -5,6 +5,6 @@ module.exports = {
     },
     products: [
         '14.1-inch Laptop',
-        'Build your own cheap computer'
+        'Computing and Internet'
     ]
 };

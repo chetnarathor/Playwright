@@ -2,31 +2,32 @@
 const { devices } = require('@playwright/test');
 const JSONReporter = require('./JSONReporter');
 
+/**
+ * Playwright configuration file.
+ * Defines test settings, reporters, and projects.
+ */
 const config = {
-  testDir: './tests',
-  retries :0,
-  
-  /* Maximum time one test can run for. */
-  timeout: 90 * 1000,
+  testDir: './tests', // Directory containing test files.
+  retries: 0, // Number of retries for failed tests.
+
+  timeout: 90 * 1000, // Maximum time one test can run for.
   expect: {
-  
-    timeout: 10000
+    timeout: 10000 // Timeout for expect assertions.
   },
-  
-  reporter: 'html',
+
+  reporter: 'html', // Default reporter.
   reporters: [
-    ['list'],
-    [JSONReporter]
+    ['list'], // Console reporter.
+    [require('./JSONReporter')] // Custom JSON reporter.
   ],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
+  workers: 1, // Number of parallel workers.
   projects: [
     {
       name: 'Headed Mode',
       use: {
-        actionTimeout: 10_000,
-        navigationTimeout: 60_000,
         browserName: 'chromium',
-        headless: false, // Headed mode
+        headless: false, // Run tests in headed mode.
         screenshot: 'on',
         trace: 'on',
         baseURL: 'https://demowebshop.tricentis.com',
@@ -35,10 +36,8 @@ const config = {
     {
       name: 'Headless Mode',
       use: {
-        actionTimeout: 10_000,
-        navigationTimeout: 60_000,
         browserName: 'chromium',
-        headless: true, // Headless mode
+        headless: true, // Run tests in headless mode.
         screenshot: 'on',
         trace: 'on',
         baseURL: 'https://demowebshop.tricentis.com',
